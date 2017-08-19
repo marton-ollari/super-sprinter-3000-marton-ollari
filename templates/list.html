@@ -5,9 +5,30 @@
     <title> 
         Supersprinter3000 
     </title>
+    <style>
+    td {
+        border: 1px solid #999;
+        padding: 0.1em 1em;
+    }
+    </style>
 </head>
 <body>
-    {{ table }}
-    <a href='/story'>New story</a>
+    <p><a href='/story'>New story</a></p>
+    <table>
+    <tr>
+        {% for head in ['ID', 'Story title', 'User story', 'Acceptance criteria', 
+                        'Business value', 'Estimation', 'Status', 'Update', 'Delete'] %}
+            <td>{{head}}</td>
+        {% endfor %}
+    {% for line in table %}
+        <tr>
+        {% for element in line %}
+            <td>{{ element }}</td>
+        {% endfor %}
+        <td><a href='/story/<story_id>'>Update</a></td>
+        <td><a href='/story/<story_id>'>Delete</a></td>
+        </tr>
+    {% endfor %}
+    </table>
 </body>
 </html>

@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session
 
 app = Flask(__name__)
 
+
 @app.route('/')
 @app.route('/list')
 def index():
@@ -17,7 +18,6 @@ def form(story_id=None):
 
 @app.route('/save-table', methods=['POST'])
 def route_save():
-    session['note'] = request.form['note']
     return redirect('/')
 
 
@@ -35,5 +35,4 @@ def list_to_csv(table):
             file.write(row + "\n")
 
 if __name__ == '__main__':
-    app.secret_key = 'secret'
     app.run(debug=True, port=5000)
