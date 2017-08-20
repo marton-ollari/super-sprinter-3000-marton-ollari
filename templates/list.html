@@ -3,30 +3,44 @@
 <html>
 <head>
     <title> 
-        Supersprinter3000 
+        Super Sprinter 3000
     </title>
     <style>
-    td {
-        border: 1px solid #999;
+    table, td, th {
+        border: 2px solid black;
+        border-collapse: collapse;
         padding: 0.1em 1em;
+        text-align: center;
+    }
+    table{
+        width: 1200px;
+        text-align: center;
+    }
+    th {
+        background-color: green;
+    }
+    td {
+        background-color: lightgreen;
     }
     </style>
 </head>
 <body>
-    <p><a href='/story'>New story</a></p>
+    <h3>User Story Manager</h3>
+    <p><a href='/story'><button>New story</button></a></p>
     <table>
     <tr>
         {% for head in ['ID', 'Story title', 'User story', 'Acceptance criteria', 
                         'Business value', 'Estimation', 'Status', 'Update', 'Delete'] %}
-            <td>{{head}}</td>
+            <th width={{head}}><h3>{{head}}</h3></th>
         {% endfor %}
+    </tr>
     {% for line in table %}
         <tr>
         {% for element in line %}
             <td>{{ element }}</td>
         {% endfor %}
-        <td><a href='/story/<story_id>'>Update</a></td>
-        <td><a href='/story/<story_id>'>Delete</a></td>
+        <td><a href='/story/{{line[0]}}'><img src="http://simpleicon.com/wp-content/uploads/pen-15.png" width="25" height="25" alt="update"></a></td>
+        <td><a href='/delete/{{line[0]}}'><img src="https://image.flaticon.com/icons/png/128/54/54324.png" width="25" height="25" alt=delete{{line[0]}}></a></td>
         </tr>
     {% endfor %}
     </table>
